@@ -1,10 +1,6 @@
 {
   "name": "SocialNetwork",
   "version": "0.0.1",
-  "description": "Event system",
-  "main": "server.js",
-  "author": "IK",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.9.0",
     "connect-busboy": "0.0.2",

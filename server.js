@@ -5,7 +5,9 @@ var express = require("express"),
 
 app.server = http.createServer();
 
-require('./server/config/mongoose')(config);
+require('./server/config/mongoose');
+require('./server/config/router')(app);
+
 
 app.server.on('request', app);
 app.server.listen(config.port);
