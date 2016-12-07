@@ -1,6 +1,12 @@
+var users = require('../data/users.js');
+
+
+
 module.exports = {
     postRegister: function (req, res, next) {
+      console.log();
         var newUserData = req.body;
+        console.log(newUserData);
         users.create(newUserData, function(err, user) {
             if (err) {
                 if (err.code == 11000) {

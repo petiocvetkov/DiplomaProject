@@ -1,6 +1,6 @@
 
 var controllers = require('../controllers/controllers');
-module.exports = function functionName(app) {
+module.exports = function (app) {
     app.get('/', function(req, res, next) {
         res.send("HELLO");
     });

@@ -1,14 +1,13 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 
 
-module.exports.init = function () {
+module.exports = function () {
     var userSchema = mongoose.Schema({
         username: {type: String, required: true, unique: true},
-        hashPass: String,
-        salt: String
+        password: String
     });
 
 
-    var User = mongoose.model("User", userSchema);
+     mongoose.model("User", userSchema);
 };

@@ -1,5 +1,5 @@
-var UserController = require('./UserController'),
+var UserController = require('./UserController');
 
-module = {
-    users: UserController,
+module.exports = {
+    users: UserController
 };
