@@ -6,4 +6,5 @@ module.exports = function (app) {
     });
 
     app.post('/users/register', controllers.users.postRegister);
+    app.post('/users/login', controllers.users.postLogin)
 };

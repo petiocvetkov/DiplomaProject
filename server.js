@@ -4,7 +4,7 @@ var
 
 
 
-require('./server/config/mongoose');
+require('./server/config/mongoose')(config);
 require('./server/config/router')(app);
 
 

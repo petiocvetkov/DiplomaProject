@@ -10,6 +10,7 @@ module.exports = {
         users.create(newUserData, function(err, user) {
             if (err) {
                 if (err.code == 11000) {
+                  console.log("hello man");
                     res.status(400);
                     return res.send({reason: "Failed to register duplicate username: " + newUserData.username});
                 }
@@ -18,16 +19,16 @@ module.exports = {
                 res.status(400);
                 return res.send({reason: err.toString()});
             }
-
-            req.logIn(user, function(err) {
-                if (err) {
-                    res.status(400);
-                    return res.send({reason: err.toString()});
-                }
-                else {
-                    res.redirect('/');
-                }
-            });
         });
     },
+    postLogin:function (req, res, next) {
+      var loginUser = req.body;
+      console.log(loginUser);
+      console.log("asd");
+
+      users.find(req.body,function (err,user) {
+        console.log(err);
+      })
+
+    }
 };
