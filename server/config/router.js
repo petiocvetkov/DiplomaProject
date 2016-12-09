@@ -5,6 +5,8 @@ module.exports = function (app) {
         res.send("HELLO");
     });
 
+
+    app.post('/events/create', controllers.events.postCreate);
+
     app.post('/users/register', controllers.users.postRegister);
-    app.post('/users/login', controllers.users.postLogin)
 };

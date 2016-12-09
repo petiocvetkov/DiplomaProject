@@ -20,15 +20,5 @@ module.exports = {
                 return res.send({reason: err.toString()});
             }
         });
-    },
-    postLogin:function (req, res, next) {
-      var loginUser = req.body;
-      console.log(loginUser);
-      console.log("asd");
-
-      users.find(req.body,function (err,user) {
-        console.log(err);
-      })
-
     }
 };

@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     config = require('./config.js'),
-    UserModel = require('../data/models/User');
+    UserModel = require('../data/models/User'),
+    EventModel = require('../data/models/Event');
+
 
 module.exports  = function(config) {
     mongoose.connect(config.db);
@@ -20,4 +22,5 @@ module.exports  = function(config) {
     });
 
     UserModel.init();
+    EventModel.init();
 };
