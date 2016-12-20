@@ -1,4 +1,5 @@
-var users = require('../data/users.js');
+var users = require('../data/users.js'),
+    encryption = require('../utils/encryption');
 
 
 
@@ -6,11 +7,13 @@ module.exports = {
     postRegister: function (req, res, next) {
       console.log();
         var newUserData = req.body;
+        newUserData.salt = encryption.generateSalt();
+        newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+
         console.log(newUserData);
         users.create(newUserData, function(err, user) {
             if (err) {
                 if (err.code == 11000) {
-                  console.log("hello man");
                     res.status(400);
                     return res.send({reason: "Failed to register duplicate username: " + newUserData.username});
                 }
@@ -19,6 +22,7 @@ module.exports = {
                 res.status(400);
                 return res.send({reason: err.toString()});
             }
+            res.send(req.body);
         });
     }
 };

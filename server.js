@@ -1,10 +1,11 @@
 var
-    app = require('./server/config/express')(),
-    config = require('./server/config/config.js');
+    config = require('./server/config/config.js'),
+    app = require('./server/config/express')(config);
 
 
 
 require('./server/config/mongoose')(config);
+require('./server/config/passport')();
 require('./server/config/router')(app);
 
 
