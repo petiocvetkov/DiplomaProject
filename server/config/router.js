@@ -2,7 +2,7 @@ var controllers = require('../controllers/controllers'),
     auth = require('./auth');
 module.exports = function (app) {
     app.get('/', function(req, res, next) {
-        res.send("HELLO");
+        res.render("index",{'currentUser':req.user});
     });
 
     app.get('/login', controllers.users.getLogin);

@@ -5,12 +5,12 @@ module.exports = {
         var auth = passport.authenticate('local', function(err, user) {
             if (err) return next(err);
             if (!user) {
-                res.send({success: false}); // TODO:
+                console.log({success: false}); // TODO:
             }
 
             req.logIn(user, function(err) {
                 console.log("login")
-                if (err) return next(err);
+                if (err) return next(err)
                 res.redirect('/');
             })
         });

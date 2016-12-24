@@ -1,6 +1,9 @@
 var users = require('../data/users.js'),
     encryption = require('../utils/encryption');
 
+var CONTROLLER_NAME = 'users';
+
+
 
 
 module.exports = {
@@ -24,5 +27,9 @@ module.exports = {
             }
             res.send(req.body);
         });
+    },
+
+    getLogin: function(req, res, next) {
+        res.render(CONTROLLER_NAME + '/login');
     }
 };
