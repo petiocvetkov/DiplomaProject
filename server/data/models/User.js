@@ -1,14 +1,18 @@
 var mongoose = require('mongoose'),
     encryption = require('../../utils/encryption');
-;
+
+var requiredMessage = '{PATH} is required';
 
 
 
 module.exports.init = function () {
     var userSchema = mongoose.Schema({
-        username: {type: String, required: true, unique: true},
+        email: { type: String, required: requiredMessage, unique:true},
+        username: {type: String, required: requiredMessage, unique: true},
         hashPass: String,
-        salt: String
+        salt: String,
+        firstName:  { type: String, required: requiredMessage},
+        lastName:  { type: String, required: requiredMessage}
         });
     userSchema.method({
         authenticate: function (password) {

@@ -9,9 +9,14 @@ module.exports = function (app) {
     app.post('/login',auth.login);
     app.get('/logout', auth.logout);
 
+    app.get('/register', controllers.users.getRegister);
+    app.post('/register', controllers.users.postRegister)
 
 
-    app.post('/events/create', controllers.events.postCreate);
+
+    app.get('/events/create',auth.isAuthenticated, controllers.events.getCreate);
+    app.post('/events/create',auth.isAuthenticated, controllers.events.postCreate);
+    app.get('/events/active',controlles.events.getActive);
 
     app.post('/users/register', controllers.users.postRegister);
 };

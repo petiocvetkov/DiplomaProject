@@ -1,12 +1,16 @@
 var mongoose = require('mongoose');
 
+var requiredMessage = '{PATH} is required';
+
+
 module.exports.init = function () {
       var eventSchema = mongoose.Schema({
-        title: {type: String, required: true},
-        description: {type: String, required: true},
-        //sport:{type: String, required: true},
-        //date:{type: Date, required: true},
-        //creator:{type: String, required: true},
+        title: { type: String, required: requiredMessage},
+        description: {type: String, required: requiredMessage},
+        sport:{type: String, required: requiredMessage},
+        date:{type: Date, required: requiredMessage},
+        creator:{type: String, required: requiredMessage},
+        location:{type: String, required:requiredMessage},
         comments:[{
           username:String,
           content:String
