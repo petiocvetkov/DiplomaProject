@@ -21,6 +21,17 @@ block main-content
                                 a.btn.btn-lg.btn-primary(href="/events/details/#{event._id}") View
                 br
                 ul.list-unstyled.list-inline.text-center
-                    - for(var i = 1; i <= data.total / data.pageSize; i++)
-                    li
-                        a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
+                    if data.currentPage <= 5
+                        - for(var i = 1; i <= data.currentPage; i++)
+                            li
+                                a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
+                        - for(var i = data.currentPage + 1; i <= data.total / data.pageSize && i < data.currentPage + 5 ; i++)
+                            li
+                                a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
+                    else
+                        - for(var i = data.currentPage - 5; i <= data.currentPage; i++)
+                            li
+                                a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
+                        - for(var i = currentPage + 1; i <= data.total / data.pageSize && i <= currentPage + 5; i++)
+                            li
+                                a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}

@@ -9,7 +9,7 @@ module.exports = {
   postCreate: function (req,res,next) {
       var event = req.body;
 
-      events.create(event,function (err,event) {
+      events.create(event,req.user , function (err,event) {
           if (err){
             console.log(err);
           }
@@ -24,15 +24,19 @@ module.exports = {
       currentUser:req.user});
       },
 
-   getActive: function () {
-       var page = req.query.page || 1;
-       var pageSize = req.query.pageSize || 10;
+   getActive: function (req,res,next) {
+       var page = parseInt(req.query.page) || 1;
+       var pageSize = parseInt(req.query.pageSize) || 10;
+       var filter = req.query.filter || 0;
 
-       // TODO: get user initatives and season + 'Public' + 'None'
+       console.log(page);
+       console.log(pageSize);
 
-       events.active(page, pageSize, function(err, data) {
+        //console.log("1");
+       events.active(page, pageSize,filter, function(err, data) {
            res.render(CONTROLLER_NAME + '/active', {
-               data: data
+               data: data,
+               currentUser:req.user
            });
        });
     }

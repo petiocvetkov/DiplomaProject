@@ -28,5 +28,13 @@ module.exports = {
         else {
             next();
         }
+    },
+    isNotAuthenticated: function(req, res, next) {
+        if (req.isAuthenticated()) {
+            res.redirect('/');
+        }
+        else {
+            next();
+        }
     }
 };
