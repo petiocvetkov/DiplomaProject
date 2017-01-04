@@ -4,7 +4,6 @@ var Event = require('mongoose').model("Event");
 
 module.exports = {
   create: function (event,user,callback) {
-      console.log("create");
       event.creator = user.username;
     Event.create(event,callback);
   },

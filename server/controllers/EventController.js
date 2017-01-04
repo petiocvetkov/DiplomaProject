@@ -29,8 +29,6 @@ module.exports = {
        var pageSize = parseInt(req.query.pageSize) || 10;
        var filter = req.query.filter || 0;
 
-       console.log(page);
-       console.log(pageSize);
 
         //console.log("1");
        events.active(page, pageSize,filter, function(err, data) {

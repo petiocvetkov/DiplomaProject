@@ -19,6 +19,8 @@ block main-content
                             td #{event.creator}
                             td
                                 a.btn.btn-lg.btn-primary(href="/events/details/#{event._id}") View
+                            td
+                                a#join.btn.btn-lg.btn-success() Join
                 br
                 ul.list-unstyled.list-inline.text-center
                     if data.currentPage <= 5
@@ -35,3 +37,7 @@ block main-content
                         - for(var i = currentPage + 1; i <= data.total / data.pageSize && i <= currentPage + 5; i++)
                             li
                                 a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
+block additional-scripts
+    script(src = "/public/asd.js")
+                    
+
