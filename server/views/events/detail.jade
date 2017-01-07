@@ -1,0 +1,24 @@
+//
+   Created by petio on 6.1.2017
+extends ../shared/layout
+block main-content
+        form.container.form-horizontal
+            h2 title: #{event.title}
+            h3 Description: #{event.description}
+            h4 Location: #{event.location}
+            h4 Sport:#{event.sport}
+            p
+                | &created by #{event.creator}
+
+
+            if (event.members.indexOf(currentUser.username) > -1)
+                a(id = event._id,class = "btn  btn-lg btn-warning", style= "float:right") leave
+            else
+                a(id = event._id,class = "btn btn-lg btn-success",style= "float:right") Join
+
+block additional-scripts
+    script(src = "/public/asd.js")
+
+
+
+

@@ -37,5 +37,25 @@ module.exports = {
                currentUser:req.user
            });
        });
+    },
+
+    postJoin: function (req,res,next) {
+      events.join(req.body.id,req.user.username, function (err) {
+          
+      });
+    },
+    getDetail: function (req,res,next) {
+      console.log(req.params.id);
+      events.detail(req.params.id,function (err,data) {
+          res.render(CONTROLLER_NAME + '/detail',{
+              'event':data,
+              'currentUser':req.user
+          });
+      })
+    },
+    postLeave: function (req,res,next) {
+        events.leave(req.body.id,req.user.username,function () {
+            
+        })
     }
 }

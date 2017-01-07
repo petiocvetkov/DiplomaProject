@@ -12,10 +12,9 @@ module.exports = function (app) {
     app.get('/register',auth.isNotAuthenticated, controllers.users.getRegister);
     app.post('/register', controllers.users.postRegister)
 
-    app.post('/events/join',function (req,res) {
-        console.log(req.body);
-    })
-
+    app.post('/events/leave',auth.isAuthenticated,controllers.events.postLeave);
+    app.post('/events/join',auth.isAuthenticated,controllers.events.postJoin);
+    app.get('/events/details/:id',auth.isAuthenticated,controllers.events.getDetail);
     app.get('/events/create',auth.isAuthenticated, controllers.events.getCreate);
     app.post('/events/create',auth.isAuthenticated, controllers.events.postCreate);
     app.get('/events/active',auth.isAuthenticated, controllers.events.getActive);

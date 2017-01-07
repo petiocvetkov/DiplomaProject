@@ -11,6 +11,7 @@ module.exports.init = function () {
         //date:{type: Date, required: requiredMessage},
         creator:{type: String, required: requiredMessage},
         location:{type: String, required:requiredMessage},
+        members:[String],
         comments:[{
           username:String,
           content:String
