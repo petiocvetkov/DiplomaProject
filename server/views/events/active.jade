@@ -8,19 +8,14 @@ block main-content
             .col-md-6.col-md-offset-3
                 h1.text-center Currently Listed Events
                 br
-                table.table-bordered.table
-                    tr
-                        th Title
-                        th Creator
-                        th Operations
-                    each event in data.events
-                        tr
-                            td #{event.title}
-                            td #{event.creator}
-                            td
-                                a.btn.btn-lg.btn-primary(href="/events/details/#{event._id}") View
 
-                br
+                each event in data.events
+                    .panel.panel-primary
+                        .panel-heading
+                            a.btn.btn-lg.btn-primary(href="/events/details/#{event._id}") #{event.title}
+                        .panel-body #{event.description}
+
+                    br
                 ul.list-unstyled.list-inline.text-center
                     if data.currentPage <= 5
                         - for(var i = 1; i <= data.currentPage; i++)
