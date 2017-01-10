@@ -10,14 +10,19 @@ block main-content
             p
                 | &created by #{event.creator}
 
+            if currentUser.username == event.creator
+                a(href="/events/edit/#{event.id}") edit
+                br
+                a delete
 
-            if (event.members.indexOf(currentUser.username) > -1)
-                a(id = event._id,class = "btn  btn-lg btn-warning", style= "float:right") leave
             else
-                a(id = event._id,class = "btn btn-lg btn-success",style= "float:right") Join
+                if (event.members.indexOf(currentUser.username) > -1)
+                    a(id = event._id,class = "btn  btn-lg btn-warning", style= "float:right") leave
+                else
+                    a(id = event._id,class = "btn btn-lg btn-success",style= "float:right") Join
 
 block additional-scripts
-    script(src = "/public/asd.js")
+    script(src = "/public/scripts.js")
 
 
 

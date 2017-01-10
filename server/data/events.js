@@ -57,7 +57,7 @@ module.exports = {
             function (err, event) {
                 console.log(event.members.indexOf(username));
                 event.members.splice(event.members.indexOf(username),1);
-                console.log(event);
+                console.log(event.members);
 
                 event.save();
                 callback();
