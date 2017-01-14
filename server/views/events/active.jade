@@ -10,27 +10,30 @@ block main-content
                 br
 
                 each event in data.events
-                    .panel.panel-primary
+                    .panel.panel-info
                         .panel-heading
-                            a.btn.btn-lg.btn-primary(href="/events/details/#{event._id}") #{event.title}
+                            a(href="/events/details/#{event._id}") #{event.title}
                         .panel-body #{event.description}
 
                     br
                 ul.list-unstyled.list-inline.text-center
-                    if data.currentPage <= 5
+                    if data.currentPage < 5
                         - for(var i = 1; i <= data.currentPage; i++)
                             li
                                 a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
-                        - for(var i = data.currentPage + 1; i <= data.total / data.pageSize && i < data.currentPage + 5 ; i++)
+                        - for(var i = data.currentPage + 1;i <= data.total && i < data.currentPage + 5; i++)
                             li
                                 a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
                     else
-                        - for(var i = data.currentPage - 5; i <= data.currentPage; i++)
+                        - for(var i = data.currentPage - 4; i <= data.currentPage + 1; i++)
                             li
-                                a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
-                        - for(var i = currentPage + 1; i <= data.total / data.pageSize && i <= currentPage + 5; i++)
-                            li
-                                a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
+                                if (i == currentPage)
+                                    a.btn.btn-lf.btn-success(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
+                                else
+                                    a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
 
+                        - for(var i = data.currentPage + 1;i < data.currentPage + 4 && i <= data.total + 1 ; i++)
+                            li
+                                a.btn.btn-lf.btn-primary(href="/events/active?page=#{i}&pageSize=#{data.pageSize}") #{i}
                     
 

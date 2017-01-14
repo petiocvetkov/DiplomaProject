@@ -27,7 +27,7 @@ module.exports = {
                         events: foundEvents,
                         currentPage: page,
                         pageSize: pageSize,
-                        total: numberOfEvents
+                        total:parseInt( (numberOfEvents + pageSize -1))/pageSize
                     };
                     callback(err, data);
                 });
@@ -46,8 +46,8 @@ module.exports = {
                 }
             });
     },
-    detail: function (id, callback) {
-        Event.findOne({'_id': id}, function (err, event) {
+    detail: function (event_id, callback) {
+        Event.findOne({'_id': event_id}, function (err, event) {
             callback(err, event);
         })
 
@@ -62,6 +62,20 @@ module.exports = {
                 event.save();
                 callback();
             });
+    },
+    edit: function (event_id,event_edit,user,callback) {
+        Event.findOne({'_id': event_id}).exec(
+            function (err,event) {
+                if(user.username == event.creator) {
+                    event.title = event_edit.title;
+                    event.description = event_edit.description;
+                    event.location = event_edit.location;
+                    event.sport = event_edit.sport;
+                    event.save();
+                    callback(event, err);
+                }
+            }
+        )
     }
 
 }

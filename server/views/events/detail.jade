@@ -11,9 +11,11 @@ block main-content
                 | &created by #{event.creator}
 
             if currentUser.username == event.creator
-                a(href="/events/edit/#{event.id}") edit
+                a(href="/events/edit/#{event.id}",class= 'btn btn-lg btn-primary',style= "float:right") edit
                 br
-                a delete
+                br
+                br
+                a(id = event._id,class= 'btn btn-lg btn-primary',style= "float:right") delete
 
             else
                 if (event.members.indexOf(currentUser.username) > -1)
