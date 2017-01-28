@@ -11,6 +11,10 @@ module.exports.init = function () {
         username: {type: String, required: requiredMessage, unique: true},
         hashPass: String,
         salt: String,
+        favoriteSport:{type: String, required:requiredMessage},
+        alerts:[{title:String,
+        id:String
+        }],
         firstName:  { type: String, required: requiredMessage},
         lastName:  { type: String, required: requiredMessage}
         });

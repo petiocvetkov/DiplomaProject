@@ -76,6 +76,12 @@ module.exports = {
                 }
             }
         )
+    },
+    delete:function (event_id,callback) {
+        console.log("2");
+        Event.findOneAndRemove({'_id':event_id},function (err) {
+            callback(err);
+        });
     }
 
 }

@@ -11,7 +11,7 @@ block main-content
                 | &created by #{event.creator}
 
             if currentUser.username == event.creator
-                a(href="/events/edit/#{event.id}",class= 'btn btn-lg btn-primary',style= "float:right") edit
+                a(href="/events/edit/#{event.id}",class= 'btn btn-lg btn-info',style= "float:right") edit
                 br
                 br
                 br
@@ -24,7 +24,7 @@ block main-content
                     a(id = event._id,class = "btn btn-lg btn-success",style= "float:right") Join
 
 block additional-scripts
-    script(src = "/public/scripts.js")
+    script(src = "/public/detail.js")
 
 
 

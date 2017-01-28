@@ -17,6 +17,11 @@ block main-content
         label(for="confirm-password") Confirm Password
         input(id="confirm-password" class="form-control" type="password" name="confirmPassword" placeholder="Confirm password")
         br
+        label(for="sport") Sport
+        select(id="sport" class="form-control" name="favoriteSport")
+            each sport in sports
+                option(value="#{sport}") #{sport}
+        br
         label(for="first-name") First Name
         input(id="first-name" class="form-control" type="text" name="firstName" placeholder="First Name")
         br

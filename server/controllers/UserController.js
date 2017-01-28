@@ -1,5 +1,7 @@
 var users = require('../data/users.js'),
-    encryption = require('../utils/encryption');
+    encryption = require('../utils/encryption'),
+    constants = require('../common/constants');
+
 
 var CONTROLLER_NAME = 'users';
 
@@ -18,13 +20,19 @@ module.exports = {
                     res.status(400);
                     console.log({reason: "Failed to register duplicate username: " + newUserData.username});
                     console.log(err);
-                    return res.render(CONTROLLER_NAME + '/register');
+                    return res.render(CONTROLLER_NAME + '/register',{
+                        sports:constants.sports,
+                        errorMessage:"Duplicate username or email"
+                    });
                 }
 
                 console.log('Failed to register new user: ' + err);
                 res.status(400);
                 console.log(err.toString());
-                return res.render(CONTROLLER_NAME + '/register');
+                res.render(CONTROLLER_NAME + '/register',{
+                    errorMessage: err.toString(),
+                    sports: constants.sports
+                });
             }
             console.log("created");
             req.logIn(user, function(err) {
@@ -39,7 +47,10 @@ module.exports = {
         });
     },
     getRegister:function (req,res,next) {
-        res.render(CONTROLLER_NAME + '/register');
+        var sports = constants.sports
+        res.render(CONTROLLER_NAME + '/register',{
+            sports: sports
+        });
     },
 
     getLogin: function(req, res, next) {

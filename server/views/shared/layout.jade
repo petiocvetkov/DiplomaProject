@@ -34,7 +34,11 @@ html
                             a(href="/login") Login
 
 
-
+        if(currentUser && currentUser.alerts)
+            each alert in currentUser.alerts
+                .alert.alert-info
+                    a(href="/events/details/#{alert.id}")
+                        strong #{alert.title}
         .container
             if (errorMessage)
                 .alert.alert-danger #{errorMessage}

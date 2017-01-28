@@ -1,4 +1,5 @@
 var events = require('../data/events'),
+    users = require('../data/users'),
     constants = require('../common/constants');
 
 
@@ -18,7 +19,12 @@ module.exports = {
                 console.log(CONTROLLER_NAME + "/details/" + event._id);
                 res.redirect("/" + CONTROLLER_NAME + "/details/" + event._id);
             }
+            console.log("before add alert");
+            users.addAlert(event,function () {
+
+            });
         })
+
     },
     getCreate: function (req, res, next) {
         res.render(CONTROLLER_NAME + '/create', {
@@ -49,11 +55,16 @@ module.exports = {
     },
     getDetail: function (req, res, next) {
         console.log(req.params.id);
-        events.detail(req.params.id, function (err, data) {
-            res.render(CONTROLLER_NAME + '/detail', {
-                'event': data,
-                'currentUser': req.user
-            });
+        events.detail(req.params.id, function (err, data){
+            console.log("asdasdas    " + data);
+            if(err || data == null){
+                res.redirect('/detail/active');
+            }else {
+                res.render(CONTROLLER_NAME + '/detail', {
+                    'event': data,
+                    'currentUser': req.user
+                });
+            }
         })
     },
     postLeave: function (req, res, next) {
@@ -84,6 +95,13 @@ module.exports = {
                 'event': event,
                 'currentUser': req.user
             });
+
+        })
+    },
+    postDelete:function (req,res,next) {
+        var id = req.params.id;
+        console.log("1");
+        events.delete(id,function (err) {
         })
     }
 }
