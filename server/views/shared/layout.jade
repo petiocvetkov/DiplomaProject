@@ -39,9 +39,7 @@ html
                 .alert.alert-info
                     a(href="/events/details/#{alert.id}")
                         strong #{alert.title}
-        .container
-            if (errorMessage)
-                .alert.alert-danger #{errorMessage}
+
 
             block main-content
             include scripts

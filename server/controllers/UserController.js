@@ -20,7 +20,7 @@ module.exports = {
                     res.status(400);
                     console.log({reason: "Failed to register duplicate username: " + newUserData.username});
                     console.log(err);
-                    return res.render(CONTROLLER_NAME + '/register',{
+                    return res.render(CONTROLLER_NAME + '/',{
                         sports:constants.sports,
                         errorMessage:"Duplicate username or email"
                     });
@@ -29,7 +29,7 @@ module.exports = {
                 console.log('Failed to register new user: ' + err);
                 res.status(400);
                 console.log(err.toString());
-                res.render(CONTROLLER_NAME + '/register',{
+                res.render('index',{
                     errorMessage: err.toString(),
                     sports: constants.sports
                 });

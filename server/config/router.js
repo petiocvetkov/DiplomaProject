@@ -1,8 +1,10 @@
 var controllers = require('../controllers/controllers'),
-    auth = require('./auth');
+    auth = require('./auth'),
+    sports = require('../common/constants').sports;
 module.exports = function (app) {
-    app.get('/', function(req, res, next) {
-        res.render("index",{'currentUser':req.user});
+    app.get('/',auth.isNotAuthenticated, function(req, res, next) {
+        res.render("index",{'currentUser':req.user,
+        'sports':sports});
     });
 
     app.get('/login',auth.isNotAuthenticated, controllers.users.getLogin);

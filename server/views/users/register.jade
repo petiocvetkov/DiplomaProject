@@ -1,10 +1,13 @@
 //
    Created by petio on 27.12.2016 г..
 
-extends ../shared/layout
 
 block main-content
-    form(method="post")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    .container
+        if (errorMessage)
+            .alert.alert-danger #{errorMessage}
+    form(method="post", action='/register')
         label(for="email") E-mail
         input(id="email" class="form-control" type="email" name="email" placeholder="E-mail")
         br

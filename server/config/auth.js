@@ -11,7 +11,7 @@ module.exports = {
             req.logIn(user, function(err) {
                 console.log("login")
                 if (err) return next(err)
-                res.redirect('/');
+                res.redirect('/events/active');
             })
         });
 
@@ -31,7 +31,7 @@ module.exports = {
     },
     isNotAuthenticated: function(req, res, next) {
         if (req.isAuthenticated()) {
-            res.redirect('/');
+            res.redirect('/events/active');
         }
         else {
             next();
