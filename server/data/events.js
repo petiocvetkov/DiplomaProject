@@ -41,9 +41,6 @@ module.exports = {
                     event.members.push(username)
                     event.save();
                 }
-                else {
-                    console.log("nope")
-                }
             });
     },
     detail: function (event_id, callback) {
@@ -57,7 +54,6 @@ module.exports = {
             function (err, event) {
                 console.log(event.members.indexOf(username));
                 event.members.splice(event.members.indexOf(username),1);
-                console.log(event.members);
 
                 event.save();
                 callback();
@@ -78,10 +74,18 @@ module.exports = {
         )
     },
     delete:function (event_id,callback) {
-        console.log("2");
         Event.findOneAndRemove({'_id':event_id},function (err) {
             callback(err);
         });
+    },
+    addComment: function (event_id,comment,callback) {
+        Event.findOne({'_id': event_id},function (err,event) {
+                    console.log(event)
+                    event.comments.push(comment);
+                    event.save();
+                    callback(event);
+            }
+        );
     }
 
 }

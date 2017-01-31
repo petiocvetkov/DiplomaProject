@@ -1,4 +1,5 @@
-var passport = require('passport');
+var passport = require('passport'),
+    controllers = require('../controllers/controllers');
 
 module.exports = {
     login: function(req, res, next) {
@@ -9,8 +10,11 @@ module.exports = {
             }
 
             req.logIn(user, function(err) {
-                console.log("login")
-                if (err) return next(err)
+                console.log("login");
+                if (err) return next(err);
+                controllers.users.deleteAlerts(req.user,function () {
+                    
+                });
                 res.redirect('/events/active');
             })
         });
@@ -23,7 +27,7 @@ module.exports = {
     },
     isAuthenticated: function(req, res, next) {
         if (!req.isAuthenticated()) {
-            res.redirect('/login');
+            res.redirect('/');
         }
         else {
             next();

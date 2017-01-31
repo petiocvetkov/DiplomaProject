@@ -14,6 +14,7 @@ module.exports = function (app) {
     app.get('/register',auth.isNotAuthenticated, controllers.users.getRegister);
     app.post('/register', controllers.users.postRegister)
 
+    app.post('/events/addComment', auth.isAuthenticated, controllers.events.postAddComment)
     app.post('/events/leave',auth.isAuthenticated,controllers.events.postLeave);
     app.post('/events/join',auth.isAuthenticated,controllers.events.postJoin);
     app.get('/events/details/:id',auth.isAuthenticated,controllers.events.getDetail);

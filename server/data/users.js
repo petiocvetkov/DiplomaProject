@@ -22,5 +22,12 @@ module.exports = {
                 user.save();
             })
         })
+    },
+    deleteAlerts:function (user,callback) {
+        User.findOne(user,function (err,user) {
+            user.alerts = [];
+            user.save();
+            callback();
+        })
     }
 };

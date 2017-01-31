@@ -55,5 +55,9 @@ module.exports = {
 
     getLogin: function(req, res, next) {
         res.render(CONTROLLER_NAME + '/login');
+    },
+    deleteAlerts:function (user ,callback) {
+        users.deleteAlerts(user,callback);
     }
+
 };

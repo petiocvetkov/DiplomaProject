@@ -56,7 +56,6 @@ module.exports = {
     getDetail: function (req, res, next) {
         console.log(req.params.id);
         events.detail(req.params.id, function (err, data){
-            console.log("asdasdas    " + data);
             if(err || data == null){
                 res.redirect('/detail/active');
             }else {
@@ -103,5 +102,15 @@ module.exports = {
         console.log("1");
         events.delete(id,function (err) {
         })
+    },
+    postAddComment: function (req,res,next) {
+        console.log(req.body.id);
+        events.addComment(req.body.id,{
+            username:req.user.username,
+            content: req.body.comment
+        },function (event) {
+            res.redirect('/events/details/' + event._id);
+        })
+
     }
 }

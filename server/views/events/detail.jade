@@ -2,7 +2,7 @@
    Created by petio on 6.1.2017
 extends ../shared/layout
 block main-content
-        form.container.form-horizontal
+        .panel.panel-default.container.form-horizontal
             h2 title: #{event.title}
             h3 Description: #{event.description}
             h4 Location: #{event.location}
@@ -22,6 +22,15 @@ block main-content
                     a(id = event._id,class = "btn  btn-lg btn-warning", style= "float:right") leave
                 else
                     a(id = event._id,class = "btn btn-lg btn-success",style= "float:right") Join
+            form(method='POST',action='/events/addComment')
+                input(type="hidden" name="id" value="#{event._id}")
+                input(id="comment"  class="form-control" type="text" name="comment" placeholder="Comment")
+                input(type="submit" class="btn btn-lg btn-primary" value="Send")
+            each comment in event.comments.reverse()
+                .alert.alert-info
+                    strong #{comment.username}: #{comment.content}
+
+
 
 block additional-scripts
     script(src = "/public/detail.js")
