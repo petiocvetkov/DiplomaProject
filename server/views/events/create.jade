@@ -3,19 +3,23 @@
 
 extends ../shared/layout
 block main-content
-    form(method="post")
-        label(for="title") Title
-        input(id="title" class="form-control" type="text" name="title" placeholder="Title")
-        br
-        label(for="description") Description
-        input(id="description" class="form-control" type="text" name="description" placeholder="Description")
-        br
-        label(for="sport") Sport
-        select(id="sport" class="form-control" name="sport")
-            each sport in sports
-                option(value="#{sport}") #{sport}
-        br
-        label(for="location") Location
-        input(id="location" class="form-control" type="text" name="location" placeholder="Location")
-        br
-        input(type="submit" class="btn btn-lg" value="Create")
+     body(background='/public/img/createImg.jpg')
+        .container
+            .row
+                .col-lg-12.text-center
+                    form(method="post")
+                        label(for="title") Title
+                        input(id="title" class="form-control" type="text" name="title" placeholder="Title")
+                        br
+                        label(for="description") Description
+                        input(id="description" class="form-control" type="text" name="description" placeholder="Description")
+                        br
+                        label(for="sport") Sport
+                        select(id="sport" class="form-control" name="sport")
+                            each sport in sports
+                                option(value="#{sport}") #{sport}
+                        br
+                        label(for="location") Location
+                        input(id="location" class="form-control" type="text" name="location" placeholder="Location")
+                        br
+                        input(type="submit" class="btn btn-lg" value="Create")

@@ -7,15 +7,15 @@
 doctype
 html
     head
-        title diplom
+        title HealthyLife
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     body
         header.nav
-        .container
+        .container.navbar.navbar-inverse
             .navbar-header
-                a.navbar-brand(href="/") Event System
+                a.navbar-brand(href="/") HealthyLife
             .navbar-collapse.collapse
-                ul.nav.navbar-nav
+                ul.nav.navbar-nav.navbar-right
                     li
                         a(href="/") Home
                     if (currentUser)
@@ -27,12 +27,6 @@ html
                             a(href="/profile") #{currentUser.username}
                         li
                             a(href="/logout") Logout
-                    if (!currentUser)
-                        li
-                            a(href="/register") Register
-                        li
-                            a(href="/login") Login
-
 
         if(currentUser && currentUser.alerts)
             each alert in currentUser.alerts
@@ -46,4 +40,4 @@ html
             block additional-scripts
         footer
             p.text-center
-                | &copy; Sport
+                | &copy; HealthyLife

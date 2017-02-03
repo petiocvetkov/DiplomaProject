@@ -3,19 +3,23 @@
 extends ../shared/layout
 
 block main-content
-    form(method='POST')
-        label(for="title") Title
-            input(id="title" class="form-control" type="text" name="title" value="#{event.title}")
-            br
-            label(for="description") Description
-            input(id="description" class="form-control" type="text" name="description" value="#{event.title}")
-            br
-            label(for="sport") Sport
-            select(id="sport" class="form-control" name="sport")
-                each sport in sports
-                    option(value="#{sport}") #{sport}
-            br
-            label(for="location") Location
-            input(id="location" class="form-control" type="text" name="location" value="#{event.location}")
-            br
-            input(type="submit" class="btn btn-lg" value="Edit")
+    body(background='/public/img/editImg.jpg')
+            .container
+                .row
+                    .col-lg-11.text-center
+                        form(method='POST')
+                            label(for="title") Title
+                                input(id="title" class="form-control" type="text" name="title" value="#{event.title}")
+                                br
+                                label(for="description") Description
+                                input(id="description" class="form-control" type="text" name="description" value="#{event.title}")
+                                br
+                                label(for="sport") Sport
+                                select(id="sport" class="form-control" name="sport")
+                                    each sport in sports
+                                        option(value="#{sport}") #{sport}
+                                br
+                                label(for="location") Location
+                                input(id="location" class="form-control" type="text" name="location" value="#{event.location}")
+                                br
+                                input(type="submit" class="btn btn-lg" value="Edit")
