@@ -1,11 +1,10 @@
-var Event = require('mongoose').model("Event");
+var Event = require('mongoose').model("Event"),
+    users = require('./users');
 
 
 module.exports = {
     create: function (event, user, callback) {
         event.creator = user.username;
-        event.members = [];
-        event.members.push(user.username);
         Event.create(event, callback);
     },
     active: function (page, pageSize, filter, callback) {
@@ -27,8 +26,9 @@ module.exports = {
                         events: foundEvents,
                         currentPage: page,
                         pageSize: pageSize,
-                        total:parseInt( (numberOfEvents + pageSize -1))/pageSize
+                        total: parseInt((numberOfEvents + pageSize - 1)) / pageSize
                     };
+                    users.deleteAlerts();
                     callback(err, data);
                 });
             })
@@ -53,37 +53,36 @@ module.exports = {
         Event.findOne({'_id': event_id}).exec(
             function (err, event) {
                 console.log(event.members.indexOf(username));
-                event.members.splice(event.members.indexOf(username),1);
+                event.members.splice(event.members.indexOf(username), 1);
 
                 event.save();
                 callback();
             });
     },
-    edit: function (event_id,event_edit,user,callback) {
+    edit: function (event_id, event_edit, user, callback) {
         Event.findOne({'_id': event_id}).exec(
-            function (err,event) {
-                if(user.username == event.creator) {
-                    event.title = event_edit.title;
-                    event.description = event_edit.description;
-                    event.location = event_edit.location;
-                    event.sport = event_edit.sport;
-                    event.save();
-                    callback(event, err);
-                }
+            function (err, event) {
+                event.title = event_edit.title;
+                event.description = event_edit.description;
+                event.location = event_edit.location;
+                event.sport = event_edit.sport;
+                event.save();
+                callback(event, err);
+
             }
         )
     },
-    delete:function (event_id,callback) {
-        Event.findOneAndRemove({'_id':event_id},function (err) {
+    delete: function (event_id, callback) {
+        Event.findOneAndRemove({'_id': event_id}, function (err) {
             callback(err);
         });
     },
-    addComment: function (event_id,comment,callback) {
-        Event.findOne({'_id': event_id},function (err,event) {
-                    console.log(event)
-                    event.comments.push(comment);
-                    event.save();
-                    callback(event);
+    addComment: function (event_id, comment, callback) {
+        Event.findOne({'_id': event_id}, function (err, event) {
+                console.log(event)
+                event.comments.push(comment);
+                event.save();
+                callback(event);
             }
         );
     }

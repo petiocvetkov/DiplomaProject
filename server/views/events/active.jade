@@ -7,14 +7,16 @@ block main-content
         .container
             .row
                 .col-md-6.col-md-offset-3
-                    h1.text-center Currently Listed Events
+                    h1.text-center.text-info Find your event
                     br
 
                     each event in data.events
                         .panel.panel-info
                             .panel-heading
                                 a(href="/events/details/#{event._id}") #{event.title}
-                            .panel-body #{event.description}
+                            .panel-body
+                                p #{event.description}
+                                p Category : #{event.sport}
 
                         br
                     ul.list-unstyled.list-inline.text-center

@@ -20,7 +20,7 @@ module.exports = {
                     res.status(400);
                     console.log({reason: "Failed to register duplicate username: " + newUserData.username});
                     console.log(err);
-                    return res.render(CONTROLLER_NAME + '/',{
+                    res.render("index",{
                         sports:constants.sports,
                         errorMessage:"Duplicate username or email"
                     });
@@ -56,8 +56,8 @@ module.exports = {
     getLogin: function(req, res, next) {
         res.render(CONTROLLER_NAME + '/login');
     },
-    deleteAlerts:function (user ,callback) {
-        users.deleteAlerts(user,callback);
+    deleteAlerts:function (user) {
+        users.deleteAlerts(user);
     }
 
 };

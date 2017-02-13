@@ -18,11 +18,10 @@ module.exports = {
                 console.log("created");
                 console.log(CONTROLLER_NAME + "/details/" + event._id);
                 res.redirect("/" + CONTROLLER_NAME + "/details/" + event._id);
+                console.log("before add alert");
+                users.addAlert(event);
             }
-            console.log("before add alert");
-            users.addAlert(event,function () {
 
-            });
         })
 
     },

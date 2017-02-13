@@ -9,9 +9,8 @@ module.exports = {
     find: function (user,callback) {
       User.findOne(user,callback);
     },
-    addAlert:function (event,callback) {
-
-        User.find({'favoriteSport':event.sport},function (err,users) {
+    addAlert:function (event) {
+        User.find({'favoriteSport': event.sport},function (err,users) {
             users.forEach(function (user) {
                 if(user.alerts.length < 10){
                     user.alerts.push({
@@ -23,11 +22,10 @@ module.exports = {
             })
         })
     },
-    deleteAlerts:function (user,callback) {
+    deleteAlerts:function (user) {
         User.findOne(user,function (err,user) {
             user.alerts = [];
             user.save();
-            callback();
         })
     }
 };

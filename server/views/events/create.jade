@@ -19,6 +19,9 @@ block main-content
                             each sport in sports
                                 option(value="#{sport}") #{sport}
                         br
+                        label(for="date") Date
+                        input(id="date" class="form-control" type="Date" name="date" placeholder="date")
+                        br
                         label(for="location") Location
                         input(id="location" class="form-control" type="text" name="location" placeholder="Location")
                         br

@@ -8,7 +8,7 @@ module.exports.init = function () {
         title: { type: String, required: requiredMessage},
         description: {type: String, required: requiredMessage},
         sport:{type: String, required: requiredMessage},
-        //date:{type: Date, required: requiredMessage},
+        date:{type: Date, required: requiredMessage},
         creator:{type: String, required: requiredMessage},
         location:{type: String, required:requiredMessage},
         members:[String],

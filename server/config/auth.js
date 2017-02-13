@@ -12,10 +12,9 @@ module.exports = {
             req.logIn(user, function(err) {
                 console.log("login");
                 if (err) return next(err);
-                controllers.users.deleteAlerts(req.user,function () {
-                    
-                });
+                controllers.users.deleteAlerts(req.user);
                 res.redirect('/events/active');
+                controllers.users.deleteAlerts(req.user);
             })
         });
 
