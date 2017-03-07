@@ -29,6 +29,7 @@ module.exports = {
             res.redirect('/');
         }
         else {
+            controllers.users.deleteAlerts(req.user);
             next();
         }
     },

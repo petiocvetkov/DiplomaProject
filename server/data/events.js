@@ -52,7 +52,6 @@ module.exports = {
     leave: function (event_id, username, callback) {
         Event.findOne({'_id': event_id}).exec(
             function (err, event) {
-                console.log(event.members.indexOf(username));
                 event.members.splice(event.members.indexOf(username), 1);
 
                 event.save();
@@ -79,7 +78,6 @@ module.exports = {
     },
     addComment: function (event_id, comment, callback) {
         Event.findOne({'_id': event_id}, function (err, event) {
-                console.log(event)
                 event.comments.push(comment);
                 event.save();
                 callback(event);

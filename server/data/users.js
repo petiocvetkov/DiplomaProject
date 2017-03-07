@@ -1,4 +1,5 @@
-var User = require('mongoose').model('User');
+var User = require('mongoose').model('User'),
+    Event = require('mongoose').model('Event');
 
 
 module.exports = {
@@ -27,5 +28,22 @@ module.exports = {
             user.alerts = [];
             user.save();
         })
+    },
+    profile:function (user,callback) {
+        var dataEvents,dataUser;
+        User.findOne({'username': user.username},function (err,user) {
+            Event.find({'sport':user.favoriteSport},function (err,events) {
+                dataEvents = events;
+                var data = {
+                    'user':user,
+                    'events':events
+                }
+                console.log(data);
+                callback(data);
+
+            })
+        });
+
     }
 };
+

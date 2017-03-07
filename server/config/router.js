@@ -12,7 +12,9 @@ module.exports = function (app) {
     app.get('/logout', auth.logout);
 
     app.get('/register',auth.isNotAuthenticated, controllers.users.getRegister);
-    app.post('/register', controllers.users.postRegister)
+    app.post('/register', controllers.users.postRegister);
+
+    app.get('/profile',auth.isAuthenticated, controllers.users.getProfile);
 
     app.post('/events/addComment', auth.isAuthenticated, controllers.events.postAddComment)
     app.post('/events/leave',auth.isAuthenticated,controllers.events.postLeave);

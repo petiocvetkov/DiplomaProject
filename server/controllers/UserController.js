@@ -58,6 +58,15 @@ module.exports = {
     },
     deleteAlerts:function (user) {
         users.deleteAlerts(user);
+    },
+    getProfile: function (req,res,next) {
+        users.profile(req.user,function (data) {
+            console.log(data);
+            res.render(CONTROLLER_NAME + '/profile',{
+                'data' : data,
+                'currentUser' : req.user
+            })
+        })
     }
 
 };
