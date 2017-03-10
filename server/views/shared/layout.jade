@@ -30,8 +30,9 @@ html
         if(currentUser && currentUser.alerts)
             each alert in currentUser.alerts
                 .alert.alert-info
-                    a(href="/events/details/#{alert.id}")
-                        strong #{alert.title}
+                    p Title:
+                        a(href="/events/details/#{alert.id}")
+                            strong #{alert.title}
 
 
             block main-content
