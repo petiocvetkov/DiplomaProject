@@ -34,7 +34,7 @@ module.exports = {
                     sports: constants.sports
                 });
             }
-            console.log("created");
+
             req.logIn(user, function(err) {
                 if (err) {
                     res.status(400);
@@ -61,7 +61,6 @@ module.exports = {
     },
     getProfile: function (req,res,next) {
         users.profile(req.user,function (data) {
-            console.log(data);
             res.render(CONTROLLER_NAME + '/profile',{
                 'data' : data,
                 'currentUser' : req.user

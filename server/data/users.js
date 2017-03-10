@@ -8,12 +8,14 @@ module.exports = {
 
     },
     find: function (user,callback) {
-      User.findOne(user,callback);
+      User.findOne(user,function (err,user) {
+
+      });
     },
     addAlert:function (event) {
         User.find({'favoriteSport': event.sport},function (err,users) {
             users.forEach(function (user) {
-                if(user.alerts.length < 10){
+                if(user.alerts.length < 10 && event.creator != user.username){
                     user.alerts.push({
                         title:event.title,
                         id:event._id
@@ -21,12 +23,6 @@ module.exports = {
                 }
                 user.save();
             })
-        })
-    },
-    deleteAlerts:function (user) {
-        User.findOne(user,function (err,user) {
-            user.alerts = [];
-            user.save();
         })
     },
     profile:function (user,callback) {
@@ -38,12 +34,17 @@ module.exports = {
                     'user':user,
                     'events':events
                 }
-                console.log(data);
                 callback(data);
 
             })
         });
 
+    },
+    deleteAlerts : function (user,callback) {
+        User.findOne({'username' : user}, function (err,user) {
+            user.alerts = [];
+            user.save();
+        })
     }
 };
 

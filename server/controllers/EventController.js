@@ -15,10 +15,7 @@ module.exports = {
                 console.log(err);
             }
             else {
-                console.log("created");
-                console.log(CONTROLLER_NAME + "/details/" + event._id);
                 res.redirect("/" + CONTROLLER_NAME + "/details/" + event._id);
-                console.log("before add alert");
                 users.addAlert(event);
             }
 
@@ -38,7 +35,6 @@ module.exports = {
         var filter = req.query.filter || 0;
 
 
-        //console.log("1");
         events.active(page, pageSize, filter, function (err, data) {
             res.render(CONTROLLER_NAME + '/active', {
                 data: data,
@@ -53,7 +49,7 @@ module.exports = {
         });
     },
     getDetail: function (req, res, next) {
-        console.log(req.params.id);
+
         events.detail(req.params.id, function (err, data){
             if(err || data == null){
                 res.redirect('/detail/active');
@@ -98,12 +94,11 @@ module.exports = {
     },
     postDelete:function (req,res,next) {
         var id = req.params.id;
-        console.log("1");
         events.delete(id,function (err) {
         })
     },
     postAddComment: function (req,res,next) {
-        console.log(req.body.id);
+
         events.addComment(req.body.id,{
             username:req.user.username,
             content: req.body.comment

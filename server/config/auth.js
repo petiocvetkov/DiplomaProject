@@ -10,11 +10,10 @@ module.exports = {
             }
 
             req.logIn(user, function(err) {
-                console.log("login");
                 if (err) return next(err);
-                controllers.users.deleteAlerts(req.user);
                 res.redirect('/events/active');
-                controllers.users.deleteAlerts(req.user);
+                console.log("before delte");
+
             })
         });
 
@@ -29,7 +28,8 @@ module.exports = {
             res.redirect('/');
         }
         else {
-            controllers.users.deleteAlerts(req.user);
+            controllers.users.deleteAlerts(req.user.username,function () {
+            });
             next();
         }
     },

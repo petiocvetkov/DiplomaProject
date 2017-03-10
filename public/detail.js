@@ -32,22 +32,23 @@
                 },
                 dataType: "JSON"
             })
-        })
+        });
+        $(".btn.btn-lg.btn-primary").click(function () {
+            var id = $(this).attr('id');
+            $(this).hide();
+            console.log("delete");
+            $.ajax({
+                type: "POST",
+                url: "/events/delete/"+id,
+                success: function (data) {
+
+                },
+                dataType: "JSON"
+            })
+            window.location.replace("/events/active");
+
+
+        });
     });
-    $(".btn.btn-lg.btn-primary").click(function () {
-        var id = $(this).attr('id');
-        $(this).hide();
-        console.log("leave");
-        $.ajax({
-            type: "POST",
-            url: "/events/delete/"+id,
-            success: function (data) {
 
-            },
-            dataType: "JSON"
-        })
-        window.location.replace("/events/active");
-
-
-    })
 })(jQuery);

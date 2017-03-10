@@ -28,7 +28,6 @@ module.exports = {
                         pageSize: pageSize,
                         total: parseInt((numberOfEvents + pageSize - 1)) / pageSize
                     };
-                    users.deleteAlerts();
                     callback(err, data);
                 });
             })
