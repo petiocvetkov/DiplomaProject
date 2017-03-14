@@ -12,7 +12,6 @@ module.exports = {
             req.logIn(user, function(err) {
                 if (err) return next(err);
                 res.redirect('/events/active');
-                console.log("before delte");
 
             })
         });
