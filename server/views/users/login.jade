@@ -2,6 +2,9 @@
    Created by petio on 24.12.2016 г..
 
 block main-content
+    if loginError
+        .alert.alert-danger
+            p #{loginError}
     form(method="post",action='/login')
         label(for="username") Username
         input(id="username"  class="form-control" type="text" name="username" placeholder="Username")

@@ -4,6 +4,9 @@
 extends ../shared/layout
 block main-content
      body(background='/public/img/createImg.jpg')
+         if errorMessage
+             .alert.alert-danger
+                 p Not all fields are filled
         .container
             .row
                 .col-lg-12.text-center
@@ -19,10 +22,15 @@ block main-content
                             each sport in sports
                                 option(value="#{sport}") #{sport}
                         br
+
                         label(for="date") Date
-                        input(id="date" class="form-control" type="Date" name="date" placeholder="date")
+                        input(id="date" class="form-control" type="Date" name="date" placeholder="Date")
+                        br
+                        label(for="time") Start hour
+                        input(id="time" class="form-control" type="time" name="time" placeholder="Time")
                         br
                         label(for="location") Location
                         input(id="location" class="form-control" type="text" name="location" placeholder="Location")
                         br
                         input(type="submit" class="btn btn-lg" value="Create")
+

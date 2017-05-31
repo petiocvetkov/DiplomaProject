@@ -12,7 +12,7 @@ module.exports = function(config) {
     app.use(cookieParser());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
-    app.use(session({secret: 'magic unicorns', resave: true, saveUninitialized: true}));
+    app.use(session({secret: 'tues', resave: true, saveUninitialized: true}));
     app.use(passport.initialize());
     app.use(passport.session());
 

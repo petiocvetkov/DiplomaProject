@@ -9,9 +9,13 @@ var CONTROLLER_NAME = 'events';
 module.exports = {
     postCreate: function (req, res, next) {
         var event = req.body;
+        console.log(event);
 
         events.create(event, req.user, function (err, event) {
             if (err) {
+                res.render(CONTROLLER_NAME + "/create",{"errorMessage" : err.message,
+                "currentUser" : req.user,
+                "sports" : constants.sports});
                 console.log(err);
             }
             else {
@@ -63,7 +67,8 @@ module.exports = {
     },
     postLeave: function (req, res, next) {
         events.leave(req.body.id, req.user.username, function () {
-
+            res.status(200);
+            res.send(req.user.username);
         })
     },
     getEdit: function (req, res, next) {

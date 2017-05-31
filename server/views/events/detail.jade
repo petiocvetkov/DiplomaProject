@@ -31,7 +31,8 @@ block main-content
                 input(type="submit" class="btn btn-lg btn-primary" value="Send")
             each comment in event.comments.reverse()
                 .alert.alert-info
-                    strong #{comment.username}: #{comment.content}
+                    a(href = "/profile/#{comment.username}") #{comment.username}
+                    strong : #{comment.content}
 
 
 

@@ -14,7 +14,7 @@
                 url: "/events/join",
                 data: {'id':id},
                 success: function (data) {
-                    console.log(data)
+                    console.log(data);
                 },
                 dataType: "JSON"
             })
