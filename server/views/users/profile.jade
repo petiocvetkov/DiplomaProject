@@ -3,9 +3,28 @@
 extends ../shared/layout
 block main-content
     body(background='/public/img/portfolio/thumbnails/4.jpg')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
         .panel.panel-default.container.form-horizontal
                 h2 Username: #{data.user.username}
                 h3 Email: #{data.user.email}
                 h4 Favorite sport: #{data.user.favoriteSport}
                 h4 First name:#{data.user.firstName}
                 h4 Last name: #{data.user.lastName}
+                .container
+                    button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModal') Event for you
+                    // Modal
+                    #myModal.modal.fade(role='dialog')
+                        .modal-dialog
+                            // Modal content
+                            .modal-content
+                                .modal-body
+                                    each event in data.events
+                                        .panel.panel-info
+                                            .panel-heading
+                                                a(href="/events/details/#{event._id}") #{event.title}
+                                            .panel-body
+                                                p #{event.description}
+                                                p Category : #{event.sport}
+                                                p Date : #{event.date}
+                                .modal-footer
+                                    button.btn.btn-default(type='button', data-dismiss='modal') Close

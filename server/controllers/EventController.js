@@ -49,7 +49,6 @@ module.exports = {
 
     postJoin: function (req, res, next) {
         events.join(req.body.id, req.user.username, function (err) {
-
         });
     },
     getDetail: function (req, res, next) {

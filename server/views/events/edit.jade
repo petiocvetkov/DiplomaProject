@@ -4,11 +4,11 @@ extends ../shared/layout
 
 block main-content
     body(background='/public/img/editImg.jpg')
-            .container
+        .container
                 .row
                     .col-lg-11.text-center
                         form(method='POST')
-                            label(for="title") Title
+                                label(for="title") Title
                                 input(id="title" class="form-control" type="text" name="title" value="#{event.title}")
                                 br
                                 label(for="description") Description
@@ -18,6 +18,12 @@ block main-content
                                 select(id="sport" class="form-control" name="sport")
                                     each sport in sports
                                         option(value="#{sport}") #{sport}
+                                br
+                                label(for="date") Date
+                                input(id="date" class="form-control" type="Date" name="date" placeholder="Date" value="#{event.date}")
+                                br
+                                label(for="time") Start hour
+                                input(id="time" class="form-control" type="time" name="startTime" placeholder="Time" value="#{event.startTime}")
                                 br
                                 label(for="location") Location
                                 input(id="location" class="form-control" type="text" name="location" value="#{event.location}")

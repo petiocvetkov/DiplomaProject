@@ -10,7 +10,7 @@ module.exports.init = function () {
         sport:{type: String, required: requiredMessage},
         date:{type: String, required: requiredMessage},
         creator:{type: String, required: requiredMessage},
-        time : {type: String, required: requiredMessage},
+        startTime : {type: String, required: requiredMessage},
         location:{type: String, required:requiredMessage},
         members:[String],
         comments:[{

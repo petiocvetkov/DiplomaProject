@@ -19,7 +19,6 @@ module.exports = {
                 if (err.code == 11000) {
                     res.status(400);
                     console.log({reason: "Failed to register duplicate username: " + newUserData.username});
-                    console.log(err);
                     res.render("index",{
                         sports:constants.sports,
                         errorMessage:"Duplicate username or email"
@@ -28,9 +27,8 @@ module.exports = {
 
                 console.log('Failed to register new user: ' + err);
                 res.status(400);
-                console.log(err.toString());
                 res.render('index',{
-                    errorMessage: err.toString(),
+                    errorMessage: err.toString().split(':')[1],
                     sports: constants.sports
                 });
             }

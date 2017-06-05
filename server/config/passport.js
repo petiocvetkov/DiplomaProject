@@ -10,7 +10,6 @@ module.exports = function() {
                 console.log('Error loading user: ' + err);
                 return;
             }
-            console.log(user.alerts);
             if (user && user.authenticate(password)) {
                 return done(null, user);
             }

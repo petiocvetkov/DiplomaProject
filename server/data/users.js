@@ -29,10 +29,10 @@ module.exports = {
         var dataEvents,dataUser;
         User.findOne({'username': user.username},function (err,user) {
             Event.find({'sport':user.favoriteSport},function (err,events) {
-                dataEvents = events;
+                dataEvents = events.slice(0,3);
                 var data = {
                     'user':user,
-                    'events':events
+                    'events':dataEvents
                 }
                 callback(data);
 

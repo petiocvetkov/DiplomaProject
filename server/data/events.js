@@ -5,6 +5,8 @@ var Event = require('mongoose').model("Event"),
 module.exports = {
     create: function (event, user, callback) {
         event.creator = user.username;
+        event.members = [];
+        event.members.push(user.username)
         Event.create(event, callback);
     },
     active: function (page, pageSize, filter, callback) {

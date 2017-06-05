@@ -3,6 +3,7 @@
 extends ../shared/layout
 block main-content
     script(src = "/public/detail.js")
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
     body(background='/public/img/portfolio/thumbnails/4.jpg')
         .panel.panel-default.container.form-horizontal
             h2 title: #{event.title}
@@ -10,7 +11,23 @@ block main-content
             h4 Location: #{event.location}
             h4 Sport:#{event.sport}
             h4 Date: #{event.date}
-            h4 Time : #{event.time}
+            h4 Start : #{event.startTime}
+            .container
+                // Trigger the modal with a button
+                button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModal', style= "float:right") Members
+                #myModal.modal.fade(role='dialog')
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                button.close(type='button', data-dismiss='modal') ×
+                                h4.modal-title Members
+                            .modal-body
+                                each member in event.members
+                                    a(href = "/profile/#{member}") #{member}
+                                    br
+                            .modal-footer
+                                button.btn.btn-default(type='button', data-dismiss='modal') Close
+
             p
                 | &created by #{event.creator}
 
